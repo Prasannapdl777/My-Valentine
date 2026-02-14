@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>❤️ For Beeeneee</title>
+  <style>
+    :root{
+      --card:#ffffffcc;
+      --text:#111827;
+      --muted:#6b7280;
+      --yes:#16a34a;
+      --no:#ef4444;
+      --shadow: 0 18px 60px rgba(0,0,0,.12);
+      --radius: 18px;
+    }
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:
+        radial-gradient(1200px 900px at 20% 10%, #fff1f2, transparent 60%),
+        radial-gradient(1000px 800px at 80% 90%, #ffe4e6, transparent 55%),
+        linear-gradient(135deg, #fff 0%, #fff1f2 100%);
+      overflow:hidden;
+      padding: 20px;
+    }
+    .wrap{ width:min(620px, 94vw); position:relative; z-index:2; }
+    .card{
+      background:var(--card);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px 22px;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 12px; border-radius: 999px;
+      background: rgba(239,68,68,.12);
+      border: 1px solid rgba(239,68,68,.22);
+      color:#991b1b; font-weight:700; font-size: 13px;
+    }
+    h1{ margin:14px 0 6px; font-size: 24px; line-height:1.2; }
+    p{ margin: 0 0 14px; color: var(--muted); line-height:1.6; font-size: 15px; }
+
+    .question{
+      margin-top: 16px; padding: 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.75);
+      border: 1px solid rgba(0,0,0,.06);
+    }
+    .qtext{ font-size: 18px; font-weight: 800; color: #111827; margin: 0 0 10px; }
+    .subtext{ font-size: 14px; color: var(--muted); margin: 0 0 14px; white-space: pre-line; }
+    .btns{ display:flex; gap: 10px; flex-wrap:wrap; }
+    button{
+      border:0; cursor:pointer; border-radius: 14px;
+      padding: 12px 14px; font-weight: 800; font-size: 15px;
+      flex: 1 1 160px;
+      transition: transform .08s ease, filter .12s ease, box-shadow .12s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    }
+    button:active{ transform: translateY(1px) scale(.99); }
+    .yes{ background: rgba(22,163,74,.92); color:white; }
+    .no{ background: rgba(239,68,68,.92); color:white; }
+    .alt{ background: rgba(17,24,39,.92); color:white; }
+
+    /* slideshow */
+    .slideWrap{
+      margin-top: 10px;
+      border-radius: 14px;
+      overflow:hidden;
+      border: 1px solid rgba(0,0,0,.06);
+      background: rgba(255,255,255,.6);
+    }
+    .slideImg{
+      width:100%;
+      display:block;
+      max-height: 380px;
+      object-fit: cover;
+      background: #f3f4f6;
+    }
+    .cap{
+      padding: 10px 12px;
+      font-size: 14px;
+      color: #374151;
+    }
+    .slideBtns{
+      display:flex; gap:10px;
+      padding: 10px 12px 12px;
+    }
+
+    /* grid gallery */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:10px;
+      margin-top: 10px;
+    }
+    .thumb{
+      border-radius: 14px;
+      overflow:hidden;
+      border: 1px solid rgba(0,0,0,.06);
+      background: rgba(255,255,255,.6);
+      cursor:pointer;
+    }
+    .thumb img{
+      width:100%;
+      height:140px;
+      object-fit: cover;
+      display:block;
+    }
+
+    .note{ margin-top: 14px; font-size: 13px; color: var(--muted); text-align:center; }
+    .footer{ margin-top: 10px; text-align:center; font-size: 12px; color: #9ca3af; }
+
+    .hearts{ position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.25; }
+    .heart{ position:absolute; font-size: 18px; animation: floatUp linear infinite; user-select:none; }
+    @keyframes floatUp{
+      from{ transform: translateY(110vh) translateX(0) rotate(0deg); }
+      to{ transform: translateY(-20vh) translateX(60px) rotate(35deg); }
+    }
+
+    canvas#confetti{ position: fixed; inset:0; z-index: 9; pointer-events:none; display:none; }
+  </style>
+</head>
+
+<body>
+  <canvas id="confetti"></canvas>
+  <div class="hearts" id="hearts"></div>
+
+  <div class="wrap">
+    <div class="card">
+      <div class="badge">❤️ Valentine Special</div>
+      <h1 id="title">Hi Beeeneee ❤️</h1>
+      <p id="intro">From your Prasanna. Just read slowly… okay? 🙂</p>
+
+      <div class="question" id="questionBox">
+        <div class="qtext" id="qText"></div>
+        <div class="subtext" id="subText"></div>
+
+        <!-- Slideshow -->
+        <div id="slideshow" style="display:none;">
+          <div class="slideWrap">
+            <img id="slideImg" class="slideImg" src="" alt="memory" />
+            <div class="cap" id="slideCap"></div>
+            <div class="slideBtns">
+              <button class="alt" id="prevBtn">⬅ Prev</button>
+              <button class="alt" id="nextBtn">Next ➡</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grid Gallery -->
+        <div id="gallery" style="display:none;">
+          <div class="grid" id="grid"></div>
+          <div class="note">Tap any photo ❤️</div>
+        </div>
+
+        <div class="btns" id="btns"></div>
+      </div>
+
+      <div class="note" id="note"></div>
+      <div class="footer">— yours, Prasanna ❤️</div>
+    </div>
+  </div>
+
+  <script>
+    // Names
+    const herName = "Binita";
+    const herNick = "Beeeneee";
+    const yourName = "Prasanna";
+
+    // Photos (put these files in same folder)
+    const photos = [
+      { src:"p1.jpg",  cap:"My darling… your smile here is my favorite ❤️" },
+      { src:"p2.jpg",  cap:"This cute face 😭 my sweetheart for real ❤️" },
+      { src:"p3.jpg",  cap:"This place + you… it feels like peace ❤️" },
+      { src:"p4.jpg",  cap:"That night… simple and perfect. Just us ❤️" },
+      { src:"p5.jpg",  cap:"I look happy because you were close to me ❤️" },
+      { src:"p6.jpg",  cap:"Even with mask… you still looked so beautiful ❤️" },
+      { src:"p7.jpg",  cap:"This hug… I miss it a lot, wife ❤️" },
+      { src:"p8.jpg",  cap:"Just sitting and smiling… I want this forever ❤️" },
+      { src:"p9.jpg",  cap:"This day was fun. I want more days like this with you ❤️" },
+      { src:"p10.jpg", cap:"I remember this moment like a promise ❤️" },
+    ];
+
+    // UI Elements
+    const qText = document.getElementById("qText");
+    const subText = document.getElementById("subText");
+    const btns = document.getElementById("btns");
+    const title = document.getElementById("title");
+    const intro = document.getElementById("intro");
+    const note = document.getElementById("note");
+
+    const slideshow = document.getElementById("slideshow");
+    const slideImg = document.getElementById("slideImg");
+    const slideCap = document.getElementById("slideCap");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    const gallery = document.getElementById("gallery");
+    const grid = document.getElementById("grid");
+
+    title.textContent = Hi ${herNick} ❤️;
+    intro.textContent = From your ${yourName}. Just read slowly… okay? 🙂;
+
+    // Slideshow logic
+    let slideIndex = 0;
+    function showSlide(i){
+      slideIndex = (i + photos.length) % photos.length;
+      slideImg.src = photos[slideIndex].src;
+      slideCap.textContent = photos[slideIndex].cap + `  (${slideIndex+1}/${photos.length})`;
+    }
+    prevBtn.onclick = () => showSlide(slideIndex - 1);
+    nextBtn.onclick = () => showSlide(slideIndex + 1);
+
+    // Gallery build
+    function buildGallery(){
+      grid.innerHTML = "";
+      photos.forEach((p, idx) => {
+        const box = document.createElement("div");
+        box.className = "thumb";
+        const img = document.createElement("img");
+        img.src = p.src;
+        img.alt = "memory";
+        box.appendChild(img);
+        box.onclick = () => {
+          slideshow.style.display = "block";
+          gallery.style.display = "none";
+          showSlide(idx);
+        };
+        grid.appendChild(box);
+      });
+    }
+
+    // Steps (MCQ style)
+    const steps = {
+      start: {
+        q: Will you be my Valentine, my ${herNick}? ❤️,
+        sub: "Choose one 🙂",
+        yesLabel: "Yes ❤️",
+        noLabel: "No 🙈",
+        yes: "yes1",
+        no: "no1"
+      },
+
+      no1: {
+        q: "Okay okay 😄",
+        sub: "Maybe you clicked wrong?\nTry again, only if you want ❤️",
+        yesLabel: "Okay yes",
+        noLabel: "Still no",
+        yes: "yes1",
+        no: "soft"
+      },
+
+      soft: {
+        q: "It’s okay ❤️",
+        sub: I still wanted to say one thing.\nYou are very special to me, ${herName}.\nDo you want to see our photos?,
+        yesLabel: "Show photos",
+        noLabel: "Not now",
+        yes: "choosePhotos",
+        no: "end"
+      },
+
+      yes1: {
+        q: "Yayyy ❤️",
+        sub: My darling… before anything,\nI want you to see us. ❤️,
+        yesLabel: "Okay",
+        noLabel: "Later",
+        yes: "choosePhotos",
+        no: "distance"
+      },
+
+      choosePhotos: {
+        q: "How do you want to see our photos? ❤️",
+        sub: "You can choose slideshow or gallery.",
+        yesLabel: "Slideshow ❤️",
+        noLabel: "Gallery ❤️",
+        yes: "memoriesSlide",
+        no: "memoriesGrid"
+      },
+
+      memoriesSlide: {
+        q: "Our memories ❤️",
+        sub: "These are not just photos for me… they are my happiest time.",
+        slideshow: true,
+        yesLabel: "Next",
+        noLabel: "Continue",
+        yes: "memoriesSlide",
+        no: "distance"
+      },
+
+      memoriesGrid: {
+        q: "Our photos ❤️",
+        sub: "Tap any photo. (It will open bigger.)",
+        gallery: true,
+        yesLabel: "Continue ❤️",
+        noLabel: "Continue ❤️",
+        yes: "distance",
+        no: "distance"
+      },
+
+      distance: {
+        q: "Now one real thing… ❤️",
+        sub:
+`I am in America, you are in Nepal.
+I don’t know when we will meet again.
+
+Sometimes it hurts.
+Not big things… just simple things.
+Holding your hand.
+Sitting close.
+Going outing like this again.
+
+But I really believe one day that day will come.
+And when it comes…
+I want to roam everyday with you.
+Like it’s normal. Like it’s life.
+
+You are my girlfriend,
+my sweetheart,
+my darling…
+and in my heart, my wife. ❤️`,
+        yesLabel: "❤️",
+        noLabel: "Continue",
+        yes: "finalQ",
+        no: "finalQ"
+      },
+
+      finalQ: {
+        q: "One last question… ❤️",
+        sub: Will you stay with me, always?,
+        yesLabel: "Yes, always ❤️",
+        noLabel: "Yes ❤️",
+        yes: "final",
+        no: "final"
+      },
+
+      final: {
+        q: Happy Valentine’s Day, ${herNick} ❤️,
+        sub: I love you, ${herName}.\nAnd I miss you.\n— yours, ${yourName} ❤️,
+        yesLabel: "Replay 🔁",
+        noLabel: "Close",
+        yes: "start",
+        no: "end",
+        confetti: true
+      },
+
+      end: {
+        q: "Okay ❤️",
+        sub: "Thank you for reading.\nTake care, my love ❤️",
+        yesLabel: "Replay 🔁",
+        noLabel: "Bye 👋",
+        yes: "start",
+        no: null
+      }
+    };
+
+    function render(stepKey){
+      const step = steps[stepKey];
+      if(!step) return;
+
+      qText.textContent = step.q;
+      subText.textContent = step.sub || "";
+
+      // toggle photo areas
+      if(step.slideshow){
+        slideshow.style.display = "block";
+        gallery.style.display = "none";
+        showSlide(slideIndex);
+      } else if(step.gallery){
+        buildGallery();
+        gallery.style.display = "block";
+        slideshow.style.display = "none";
+      } else {
+        slideshow.style.display = "none";
+        gallery.style.display = "none";
+      }
+
+      btns.innerHTML = "";
+      const yesLabel = step.yesLabel || "Yes";
+      const noLabel  = step.noLabel  || "No";
+
+      const yesBtn = document.createElement("button");
+      yesBtn.className = "yes";
+      yesBtn.textContent = yesLabel;
+      yesBtn.onclick = () => render(step.yes);
+
+      const noBtn = document.createElement("button");
+      noBtn.className = "no";
+      noBtn.textContent = noLabel;
+      noBtn.onclick = () => {
+        if(step.no) render(step.no);
+        else { btns.innerHTML = ""; note.textContent = "❤️"; }
+      };
+
+      btns.appendChild(yesBtn);
+      btns.appendChild(noBtn);
+
+      note.textContent = "";
+      if(step.confetti) popConfetti();
+    }
+
+    // Floating hearts background
+    const hearts = document.getElementById("hearts");
+    const heartChars = ["❤️","🌹","💐","✨","💕","🫶"];
+    for(let i=0;i<20;i++){
+      const s = document.createElement("div");
+      s.className = "heart";
+      s.textContent = heartChars[Math.floor(Math.random()*heartChars.length)];
+      const left = Math.random()*100;
+      const dur = 10 + Math.random()*16;
+      const delay = -Math.random()*dur;
+      s.style.left = left + "vw";
+      s.style.animationDuration = dur + "s";
+      s.style.animationDelay = delay + "s";
+      s.style.fontSize = (14 + Math.random()*18) + "px";
+      hearts.appendChild(s);
+    }
+
+    // Confetti
+    const canvas = document.getElementById("confetti");
+    const ctx = canvas.getContext("2d");
+    function resize(){
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    function popConfetti(){
+      canvas.style.display = "block";
+      const pieces = [];
+      const count = 160;
+      for(let i=0;i<count;i++){
+        pieces.push({
+          x: Math.random()*canvas.width,
+          y: -20 - Math.random()*canvas.height*0.3,
+          r: 2 + Math.random()*4,
+          vx: -2 + Math.random()*4,
+          vy: 2 + Math.random()*5,
+          rot: Math.random()*Math.PI,
+          vr: -0.15 + Math.random()*0.3,
+        });
+      }
+      let frames = 0;
+      (function tick(){
+        frames++;
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        for(const p of pieces){
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.vr;
+          p.vy += 0.03;
+          ctx.save();
+          ctx.translate(p.x,p.y);
+          ctx.rotate(p.rot);
+          ctx.globalAlpha = 0.85;
+          ctx.fillRect(-p.r, -p.r, p.r*2.2, p.r*2.2);
+          ctx.restore();
+        }
+        if(frames < 150) requestAnimationFrame(tick);
+        else { ctx.clearRect(0,0,canvas.width,canvas.height); canvas.style.display = "none"; }
+      })();
+    }
+
+    // Start
+    render("start");
+  </script>
+</body>
+</html>
