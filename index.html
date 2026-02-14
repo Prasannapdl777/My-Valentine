@@ -52,131 +52,132 @@
   </div>
 
   <script>
-    var herName = "Binita";
-    var herNick = "Beeeneee";
-    var yourName = "Badar";
+  var herName = "Binita";
+  var herNick = "Beeeneee";
+  var yourName = "Badar";
 
-    var photos = [
-      { src:"p1.jpg",  cap:"My darling… your smile here is my favorite ❤️" },
-      { src:"p2.jpg",  cap:"This cute face 😭 my sweetheart for real ❤️" },
-      { src:"p3.jpg",  cap:"This place + you… it feels like peace ❤️" },
-      { src:"p4.jpg",  cap:"That night… simple and perfect. Just us ❤️" },
-      { src:"p5.jpg",  cap:"I look happy because you were close to me ❤️" },
-      { src:"p6.jpg",  cap:"Even with mask… you still looked so beautiful ❤️" },
-      { src:"p7.jpg",  cap:"This hug… I miss it a lot, my wife ❤️" },
-      { src:"p8.jpg",  cap:"Just sitting and smiling… I want this forever ❤️" },
-      { src:"p9.jpg",  cap:"This day was fun. I want more days like this with you ❤️" },
-      { src:"p10.jpg", cap:"I remember this moment like a promise ❤️" }
-    ];
+  var photos = [
+    { src:"p1.jpg",  cap:"My darling… your smile here is my favorite ❤️" },
+    { src:"p2.jpg",  cap:"This cute face 😭 my sweetheart for real ❤️" },
+    { src:"p3.jpg",  cap:"This place + you… it feels like peace ❤️" },
+    { src:"p4.jpg",  cap:"That night… simple and perfect. Just us ❤️" },
+    { src:"p5.jpg",  cap:"I look happy because you were close to me ❤️" },
+    { src:"p6.jpg",  cap:"Even with mask… you still looked so beautiful ❤️" },
+    { src:"p7.jpg",  cap:"This hug… I miss it a lot, my wife ❤️" },
+    { src:"p8.jpg",  cap:"Just sitting and smiling… I want this forever ❤️" },
+    { src:"p9.jpg",  cap:"This day was fun. I want more days like this with you ❤️" },
+    { src:"p10.jpg", cap:"I remember this moment like a promise ❤️" }
+  ];
 
-    var steps = {
-      start: {
-        q: "Will you be my Valentine, my " + herNick + "? ❤️",
-        sub: "Choose one 🙂",
-        yesLabel: "Yes ❤️",
-        noLabel: "No 🙈",
-        yes: "photos",
-        no: "tryAgain"
-      },
-      tryAgain: {
-        q: "Okay okay 😄",
-        sub: "Maybe you clicked wrong?\nTry again, only if you want ❤️",
-        yesLabel: "Okay yes",
-        noLabel: "Still no",
-        yes: "photos",
-        no: "distance"
-      },
-      photos: {
-        q: "Our memories ❤️",
-        sub: "Look at these slowly… I miss this so much.",
-        showSlides: true,
-        yesLabel: "Continue ❤️",
-        noLabel: "Continue ❤️",
-        yes: "distance",
-        no: "distance"
-      },
-      distance: {
-        q: "One real thing… ❤️",
-        sub:
-"I am in America, you are in Nepal.\n" +
-"I don’t know when we will meet again.\n\n" +
-"Sometimes it hurts.\n" +
-"Not big things… just simple things.\n" +
-"Holding your hand.\n" +
-"Sitting close.\n" +
-"Going outing like this again.\n\n" +
-"But I really believe one day that day will come.\n" +
-"And when it comes…\n" +
-"I want to roam everyday with you.\n" +
-"Like it’s normal. Like it’s life.\n\n" +
-"You are my girlfriend,\n" +
-"my sweetheart,\n" +
-"my darling…\n" +
-"and in my heart, my wife. ❤️",
-        yesLabel: "❤️",
-        noLabel: "Last page",
-        yes: "final",
-        no: "final"
-      },
-      final: {
-        q: "Happy Valentine’s Day, " + herNick + " ❤️",
-        sub: "I love you, " + herName + ".\n— Yours " + yourName + " ❤️",
-        yesLabel: "Replay 🔁",
-        noLabel: "Close",
-        yes: "start",
-        no: null
-      }
-    };
+  var steps = {
+    start: {
+      q: "Will you be my Valentine, my " + herNick + "? ❤️",
+      sub: "Choose one 🙂",
+      yesLabel: "Yes ❤️",
+      noLabel: "No 🙈",
+      yes: "photos",
+      no: "tryAgain"
+    },
+    tryAgain: {
+      q: "Okay okay 😄",
+      sub: "Maybe you clicked wrong?\nTry again, only if you want ❤️",
+      yesLabel: "Okay yes",
+      noLabel: "Still no",
+      yes: "photos",
+      no: "distance"
+    },
+    photos: {
+      q: "Our memories ❤️",
+      sub: "Look at these slowly… I miss this so much.",
+      showSlides: true,
+      yesLabel: "Continue ❤️",
+      noLabel: "Continue ❤️",
+      yes: "distance",
+      no: "distance"
+    },
+    distance: {
+      q: "One real thing… ❤️",
+      sub:
+        "I am in America, you are in Nepal.\n" +
+        "I don’t know when we will meet again.\n\n" +
+        "Sometimes it hurts.\n" +
+        "Not big things… just simple things.\n" +
+        "Holding your hand.\n" +
+        "Sitting close.\n" +
+        "Going outing like this again.\n\n" +
+        "But I really believe one day that day will come.\n" +
+        "And when it comes…\n" +
+        "I want to roam everyday with you.\n" +
+        "Like it’s normal. Like it’s life.\n\n" +
+        "You are my girlfriend,\n" +
+        "my sweetheart,\n" +
+        "my darling…\n" +
+        "and in my heart, my wife. ❤️",
+      yesLabel: "❤️",
+      noLabel: "Last page",
+      yes: "final",
+      no: "final"
+    },
+    final: {
+      q: "Happy Valentine’s Day, " + herNick + " ❤️",
+      sub: "I love you, " + herName + ".\n— Yours " + yourName + " ❤️",
+      yesLabel: "Replay 🔁",
+      noLabel: "Close",
+      yes: "start",
+      no: null
+    }
+  };
 
-    var qText = document.getElementById("qText");
-    var subText = document.getElementById("subText");
-    var btns = document.getElementById("btns");
-    var slideshow = document.getElementById("slideshow");
-    var slideImg = document.getElementById("slideImg");
-    var slideCap = document.getElementById("slideCap");
-    var prevBtn = document.getElementById("prevBtn");
-    var nextBtn = document.getElementById("nextBtn");
+  var qText = document.getElementById("qText");
+  var subText = document.getElementById("subText");
+  var btns = document.getElementById("btns");
+  var slideshow = document.getElementById("slideshow");
+  var slideImg = document.getElementById("slideImg");
+  var slideCap = document.getElementById("slideCap");
+  var prevBtn = document.getElementById("prevBtn");
+  var nextBtn = document.getElementById("nextBtn");
 
-    var slideIndex = 0;
+  var slideIndex = 0;
 
-    function showSlide(i){
-      slideIndex = (i + photos.length) % photos.length;
-      slideImg.src = photos[slideIndex].src;
-      slideCap.textContent = photos[slideIndex].cap + "  (" + (slideIndex+1) + "/" + photos.length + ")";
+  function showSlide(i){
+    slideIndex = (i + photos.length) % photos.length;
+    slideImg.src = photos[slideIndex].src;
+    slideCap.textContent = photos[slideIndex].cap + "  (" + (slideIndex+1) + "/" + photos.length + ")";
+  }
+
+  prevBtn.onclick = function(){ showSlide(slideIndex - 1); };
+  nextBtn.onclick = function(){ showSlide(slideIndex + 1); };
+
+  function render(key){
+    var step = steps[key];
+    qText.textContent = step.q;
+    subText.textContent = step.sub || "";
+
+    if(step.showSlides){
+      slideshow.style.display = "block";
+      showSlide(slideIndex);
+    } else {
+      slideshow.style.display = "none";
     }
 
-    prevBtn.onclick = function(){ showSlide(slideIndex - 1); };
-    nextBtn.onclick = function(){ showSlide(slideIndex + 1); };
+    btns.innerHTML = "";
 
-    function render(key){
-      var step = steps[key];
-      qText.textContent = step.q;
-      subText.textContent = step.sub || "";
+    var yesBtn = document.createElement("button");
+    yesBtn.className = "yes";
+    yesBtn.textContent = step.yesLabel || "Yes";
+    yesBtn.onclick = function(){ if(step.yes) render(step.yes); };
 
-      if(step.showSlides){
-        slideshow.style.display = "block";
-        showSlide(slideIndex);
-      } else {
-        slideshow.style.display = "none";
-      }
+    var noBtn = document.createElement("button");
+    noBtn.className = "no";
+    noBtn.textContent = step.noLabel || "No";
+    noBtn.onclick = function(){ if(step.no) render(step.no); };
 
-      btns.innerHTML = "";
+    btns.appendChild(yesBtn);
+    btns.appendChild(noBtn);
+  }
 
-      var yesBtn = document.createElement("button");
-      yesBtn.className = "yes";
-      yesBtn.textContent = step.yesLabel || "Yes";
-      yesBtn.onclick = function(){ if(step.yes) render(step.yes); };
-
-      var noBtn = document.createElement("button");
-      noBtn.className = "no";
-      noBtn.textContent = step.noLabel || "No";
-      noBtn.onclick = function(){ if(step.no) render(step.no); else btns.innerHTML=""; };
-
-      btns.appendChild(yesBtn);
-      btns.appendChild(noBtn);
-    }
-
-    render("start");
-  </script>
+  render("start");
+</script>
 </body>
+
 </html>
